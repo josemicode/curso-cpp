@@ -1,0 +1,1 @@
+bool esPerfecto(int n);

@@ -1,0 +1,1 @@
+int potencia(int b, int e);
