@@ -1,0 +1,77 @@
+//AUXMAINS
+
+int main(){
+	
+	Coche car;
+	
+	std::string color = "r";
+	std::string motor = "V9";
+	car.setColor(color);
+	car.setMotor(motor);
+	
+	car.setVelocidad(300);
+	car.setVelocidad(-2);
+	
+	cout << car.obtenerVelocidad() << endl;
+	
+	car.arrancar();
+	car.acelerar(2000);
+	car.acelerar(200);
+	cout << car.obtenerVelocidad() << endl;
+	car.frenar(2022);
+	car.frenar(20);
+	car.apagar();
+	cout << car.isEncendido();
+	cout << car.obtenerVelocidad() << endl;
+	car.frenar(180);
+	car.apagar();
+	cout << car.isEncendido();
+
+}
+
+int main(){
+	Hora rel;
+	rel.reiniciar(10, 59, 20);
+	std::cout << rel.getHora() << rel.getMinuto() << rel.getSegundo() << std::endl << std::endl;
+	rel.mostrarHora();
+	rel.sumarSegundos(3600);
+	rel.mostrarHora();
+
+}
+
+int main(){
+	Ascensor ele;
+	ele.cerrarPuerta();
+	cout << ele.isPuertaAbierta() << endl;
+	ele.abrirPuerta();
+	cout << ele.isPuertaAbierta() << endl;
+	ele.seleccionarPlanta(2);
+	cout << ele.getPlantaActual() << endl;
+	ele.cerrarPuerta();
+	ele.seleccionarPlanta(-11);
+	cout << ele.getPlantaActual() << endl;
+}
+
+int main() {
+    // Creamos un objeto Rectangulo
+    Rectangulo rectangulo;
+
+    // Establecemos el ancho y el alto del rectángulo
+    rectangulo.setAncho(5.0);
+    rectangulo.setAlto(3.0);
+
+    // Mostramos las dimensiones del rectángulo
+    std::cout << "Dimensiones del rectangulo:" << std::endl;
+    std::cout << "Ancho: " << rectangulo.getAncho() << std::endl;
+    std::cout << "Alto: " << rectangulo.getAlto() << std::endl;
+
+    // Cambiamos el alto y el ancho del rectángulo
+    rectangulo.cambiarAltoAncho(4.0, 6.0);
+
+    // Mostramos las nuevas dimensiones del rectángulo
+    std::cout << "\nNuevas dimensiones del rectangulo:" << std::endl;
+    std::cout << "Ancho: " << rectangulo.getAncho() << std::endl;
+    std::cout << "Alto: " << rectangulo.getAlto() << std::endl;
+
+    return 0;
+}
