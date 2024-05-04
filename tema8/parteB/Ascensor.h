@@ -3,16 +3,16 @@
 using namespace std;
 
 class Ascensor {
-private:
-    int plantaActual;
-    bool puertaAbierta;
+	private:
+		int plantaActual;
+		bool puertaAbierta;
 
-public:
+	public:
 
-    // Funciones públicas
-    void seleccionarPlanta(int nuevaPlanta);
-    void abrirPuerta();
-    void cerrarPuerta();
-    int getPlantaActual();
-    bool isPuertaAbierta();
+		// Funciones públicas
+		void seleccionarPlanta(int nuevaPlanta);
+		void abrirPuerta();
+		void cerrarPuerta();
+		int getPlantaActual();
+		bool isPuertaAbierta();
 };
