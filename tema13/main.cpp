@@ -8,21 +8,20 @@ using namespace std;
 
 void ordenarPorCuatrimestre(vector<Asignatura> &asig)
 {
-    vector<Asignatura>::iterator aux, where;
     for (int i = 1; i < asig.size(); i++)
     {
-        where = asig.begin();
-        aux = asig.begin() + 1;
+        Asignatura nuevo = asig[i];
+        auto where = asig.begin();
 
-        for (int j = 0; j <= i; j++)
+        for (int j = 0; j < i; j++)
         {
-            if((*aux) < (*where)){
+            if (nuevo < asig[j])
+            {
                 break;
             }
-            advance(where, 1);
+            ++where;
         }
-        Asignatura nuevo = *aux;
-        asig.erase(aux);
+        asig.erase(asig.begin() + i);
         asig.insert(where, nuevo);
     }
 }
@@ -70,7 +69,7 @@ int main()
     case 5:
     {
         vector<Asignatura>
-        asignaturas = {Asignatura("Matematicas II", 2, 4), Asignatura("Introduccion a los Sistemas", 2, 1), Asignatura("Electronica y Electromagnetismo", 2, 5), Asignatura("Economia", 1, 2), Asignatura("Fundamentos de la Programacion I", 1, 3)};
+            asignaturas = {Asignatura("Matematicas II", 2, 4), Asignatura("Introduccion a los Sistemas", 2, 1), Asignatura("Electronica y Electromagnetismo", 2, 5), Asignatura("Economia", 1, 2), Asignatura("Fundamentos de la Programacion I", 1, 3)};
         ordenarPorCuatrimestre(asignaturas);
         for (vector<Asignatura>::iterator it_vec = asignaturas.begin(); it_vec != asignaturas.end(); ++it_vec)
         {

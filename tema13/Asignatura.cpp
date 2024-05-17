@@ -14,6 +14,13 @@ Asignatura::Asignatura(string nombre, int cuatrimestre, float dificultad_esperad
     this->dificultad_esperada = dificultad_esperada;
 }
 
+Asignatura& Asignatura::operator=(const Asignatura& otro)
+{
+    this->nombre = otro.nombre;
+    this->cuatrimestre = otro.cuatrimestre;
+    this->dificultad_esperada = otro.dificultad_esperada;
+}
+
 string Asignatura::getNombre() const
 {
     return this->nombre;

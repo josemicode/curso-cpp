@@ -13,6 +13,7 @@ public:
     //Constructors
     Asignatura();
     Asignatura(string nombre, int cuatrimestre, float dificultad_esperada);
+    Asignatura& operator=(const Asignatura& otro);
 
     //Getters
     string getNombre() const;
