@@ -25,7 +25,7 @@ public:
     void setDificultadEsperada(float _dificultad_esperada);
 
     //Ops
-    bool operator<(const Asignatura& otro);
-    bool operator==(const Asignatura& otro);
+    bool operator<(const Asignatura& otro) const;
+    bool operator==(const Asignatura& otro) const;
     friend ostream& operator<<(ostream& os, Asignatura& asig);
 };
