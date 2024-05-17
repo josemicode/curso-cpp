@@ -26,6 +26,20 @@ void ordenarPorCuatrimestre(vector<Asignatura> &asig)
     }
 }
 
+void ordenarPorDificultadEsperada(array<Asignatura, 5> &asig)
+{
+    for (int i = 0; i < asig.size() - 1; i++)
+    {
+        int min = i;
+        for (int j = i + 1; j < asig.size(); j++)
+        {
+            if (asig[j].getDificultadEsperada() < asig[min].getDificultadEsperada())
+                min = j;
+        }
+        swap(asig[min], asig[i]);
+    }
+}
+
 int main()
 {
     int eleccion = 5;
@@ -68,13 +82,22 @@ int main()
     }
     case 5:
     {
-        vector<Asignatura>
-            asignaturas = {Asignatura("Matematicas II", 2, 4), Asignatura("Introduccion a los Sistemas", 2, 1), Asignatura("Electronica y Electromagnetismo", 2, 5), Asignatura("Economia", 1, 2), Asignatura("Fundamentos de la Programacion I", 1, 3)};
+        cout << "A continuacion, la ordenacion [insertion sort] de un vector (Segun Cuatrimestre)" << endl;
+        vector<Asignatura> asignaturas = {Asignatura("Matematicas II", 2, 4), Asignatura("Introduccion a los Sistemas", 2, 1), Asignatura("Electronica y Electromagnetismo", 2, 5), Asignatura("Economia", 1, 2), Asignatura("Fundamentos de la Programacion I", 1, 3)};
         ordenarPorCuatrimestre(asignaturas);
         for (vector<Asignatura>::iterator it_vec = asignaturas.begin(); it_vec != asignaturas.end(); ++it_vec)
         {
             cout << *(it_vec) << endl;
         }
+
+        cout << "A continuacion, ordenamos un array [selection sort] (Segun dificultad)" << endl;
+        array<Asignatura, 5> asignaturas_arr = {Asignatura("Matematicas II", 2, 4), Asignatura("Introduccion a los Sistemas", 2, 1), Asignatura("Electronica y Electromagnetismo", 2, 5), Asignatura("Economia", 1, 2), Asignatura("Fundamentos de la Programacion I", 1, 3)};
+        ordenarPorDificultadEsperada(asignaturas_arr);
+        for (int i = 0; i < asignaturas_arr.size(); i++)
+        {
+            cout << asignaturas_arr[i]; // Debemos haber implementado el operador << de tipo ostream (clase amiga)
+        }
+
         break;
     }
     default:
