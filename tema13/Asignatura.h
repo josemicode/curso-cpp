@@ -27,4 +27,5 @@ public:
     //Ops
     bool operator<(const Asignatura& otro);
     bool operator==(const Asignatura& otro);
+    friend ostream& operator<<(ostream& os, Asignatura& asig);
 };
