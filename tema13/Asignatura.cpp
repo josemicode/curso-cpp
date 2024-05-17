@@ -44,19 +44,17 @@ void Asignatura::setDificultadEsperada(float _dificultad_esperada)
     dificultad_esperada = _dificultad_esperada;
 }
 
-bool Asignatura::operator<(const Asignatura& otro)
+bool Asignatura::operator<(const Asignatura &otro)
 {
     return (this->cuatrimestre < otro.cuatrimestre);
 }
 
-bool Asignatura::operator==(const Asignatura& otro)
+bool Asignatura::operator==(const Asignatura &otro)
 {
     return ((this->nombre == otro.nombre) && (this->cuatrimestre == otro.cuatrimestre) && (this->dificultad_esperada == otro.dificultad_esperada));
 }
 
-ostream& operator<<(ostream& os, Asignatura& asig)
+ostream &operator<<(ostream &os, Asignatura &asig)
 {
     os << "\n-->" << asig.getNombre() << ": \nCuatrimestre - " << asig.getCuatrimestre() << "\nDificultad Esperada: " << asig.getDificultadEsperada() << endl;
 }
-
-
