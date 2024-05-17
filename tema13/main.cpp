@@ -1,9 +1,31 @@
 #include <iostream>
 #include <array>
 #include <set>
+#include <vector>
 #include "Asignatura.h"
 
 using namespace std;
+
+void ordenarPorCuatrimestre(vector<Asignatura> asig)
+{
+    vector<Asignatura>::iterator aux, where;
+    for (int i = 1; i < asig.size(); i++)
+    {
+        where = asig.begin();
+        aux = asig.begin() + 1;
+
+        for (int j = 0; j <= i; j++)
+        {
+            if((*aux) < (*where)){
+                break;
+            }
+            advance(where, 1);
+        }
+        Asignatura nuevo = *aux;
+        asig.erase(aux);
+        asig.insert(where, nuevo);
+    }
+}
 
 int main()
 {
@@ -35,10 +57,11 @@ int main()
         asignaturas.insert(Asignatura("Fundamentos de la Programacion I", 1, 2));
         asignaturas.insert(Asignatura("Fundamentos de la Programacion II", 2, 3));
         asignaturas.insert(Asignatura("Economia", 1, 2)); // Esta asignatura se intentará insertar en el set, de forma no exitosa pues ya existe
-        
+
         set<Asignatura>::iterator it_set = asignaturas.begin(); // Inicializamos un iterador asignado al contenedor, esto debe hacerse tras haber llenado el set de elementos
 
-        for(int i = 0; i < asignaturas.size(); i++){
+        for (int i = 0; i < asignaturas.size(); i++)
+        {
             cout << *it_set;
             advance(it_set, 1);
         }
@@ -46,6 +69,7 @@ int main()
     }
     case 5:
     {
+
         break;
     }
     default:
