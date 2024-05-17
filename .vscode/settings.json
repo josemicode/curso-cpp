@@ -20,6 +20,7 @@
     },
     "peacock.color": "#42b883",
     "files.associations": {
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "iosfwd": "cpp"
     }
 }
