@@ -4,24 +4,33 @@
 
 using namespace std;
 
-int main(){
+int main()
+{
     int eleccion = 1;
-    switch(eleccion){
-        case 1:{
-            array<Asignatura, 5> asignaturas;
-            asignaturas = {Asignatura("Matematicas II", 2, 4), Asignatura("Introduccion a los Sistemas", 2, 1), Asignatura("Electronica y Electromagnetismo", 2, 5), Asignatura("Economia", 1, 2), Asignatura("Fundamentos de la Programacion I", 1, 3)};
-            for(int i = 0; asignaturas.size(); i++){
-                cout<<"Asignatura: "<<asignaturas[i].getNombre()<<",Cuatrimestre: "<<asignaturas[i].getCuatrimestre()<<",Dificultad Esperada: "<<asignaturas[i].getDificultadEsperada()<<endl;
-            }
-            break;}
-        case 3:{
-            break;}
-        case 5:{
-            break;}
-        default:
-            cout << "Indice erroneo" << endl;
-            break;
+    switch (eleccion)
+    {
+    case 1:
+    {
+        array<Asignatura, 5> asignaturas;
+        asignaturas = {Asignatura("Matematicas II", 2, 4), Asignatura("Introduccion a los Sistemas", 2, 1), Asignatura("Electronica y Electromagnetismo", 2, 5), Asignatura("Economia", 1, 2), Asignatura("Fundamentos de la Programacion I", 1, 3)};
+        for (int i = 0; i < asignaturas.size(); i++)
+        {
+            cout << asignaturas[i];
+        }
+        break;
     }
-    
+    case 3:
+    {
+        break;
+    }
+    case 5:
+    {
+        break;
+    }
+    default:
+        cout << "Indice erroneo" << endl;
+        break;
+    }
+
     return 0;
 }

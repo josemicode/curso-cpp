@@ -54,4 +54,9 @@ bool Asignatura::operator==(const Asignatura& otro)
     return ((this->nombre == otro.nombre) && (this->cuatrimestre == otro.cuatrimestre) && (this->dificultad_esperada == otro.dificultad_esperada));
 }
 
+ostream& operator<<(ostream& os, Asignatura& asig)
+{
+    os << "\n-->" << asig.getNombre() << ": \nCuatrimestre - " << asig.getCuatrimestre() << "\nDificultad Esperada: " << asig.getDificultadEsperada() << endl;
+}
+
 
