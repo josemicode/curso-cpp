@@ -15,9 +15,9 @@ public:
     Asignatura(string nombre, int cuatrimestre, float dificultad_esperada);
 
     //Getters
-    string getNombre();
-    int getCuatrimestre();
-    float getDificultadEsperada();
+    string getNombre() const;
+    int getCuatrimestre() const;
+    float getDificultadEsperada() const;
 
     //Setter
     void setNombre(string _nombre);
@@ -27,5 +27,5 @@ public:
     //Ops
     bool operator<(const Asignatura& otro) const;
     bool operator==(const Asignatura& otro) const;
-    friend ostream& operator<<(ostream& os, Asignatura& asig);
+    friend ostream& operator<<(ostream& os, const Asignatura& asig);
 };

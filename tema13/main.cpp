@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-    int eleccion = 1;
+    int eleccion = 3;
     switch (eleccion)
     {
     case 1:
@@ -35,7 +35,13 @@ int main()
         asignaturas.insert(Asignatura("Fundamentos de la Programacion I", 1, 2));
         asignaturas.insert(Asignatura("Fundamentos de la Programacion II", 2, 3));
         asignaturas.insert(Asignatura("Economia", 1, 2)); // Esta asignatura se intentará insertar en el set, de forma no exitosa pues ya existe
+        
+        set<Asignatura>::iterator it_set = asignaturas.begin(); // Inicializamos un iterador asignado al contenedor, esto debe hacerse tras haber llenado el set de elementos
 
+        for(int i = 0; i < asignaturas.size(); i++){
+            cout << *it_set;
+            advance(it_set, 1);
+        }
         break;
     }
     case 5:
