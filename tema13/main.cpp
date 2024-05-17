@@ -16,8 +16,12 @@ int main(){
             break;}
         case 3:{
             break;}
+        case 5:{
+            break;}
         default:
             cout << "Indice erroneo" << endl;
             break;
     }
+    
+    return 0;
 }
