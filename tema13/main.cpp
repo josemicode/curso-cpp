@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void ordenarPorCuatrimestre(vector<Asignatura> asig)
+void ordenarPorCuatrimestre(vector<Asignatura> &asig)
 {
     vector<Asignatura>::iterator aux, where;
     for (int i = 1; i < asig.size(); i++)
@@ -29,7 +29,7 @@ void ordenarPorCuatrimestre(vector<Asignatura> asig)
 
 int main()
 {
-    int eleccion = 3;
+    int eleccion = 5;
     switch (eleccion)
     {
     case 1:
@@ -69,7 +69,13 @@ int main()
     }
     case 5:
     {
-
+        vector<Asignatura>
+        asignaturas = {Asignatura("Matematicas II", 2, 4), Asignatura("Introduccion a los Sistemas", 2, 1), Asignatura("Electronica y Electromagnetismo", 2, 5), Asignatura("Economia", 1, 2), Asignatura("Fundamentos de la Programacion I", 1, 3)};
+        ordenarPorCuatrimestre(asignaturas);
+        for (vector<Asignatura>::iterator it_vec = asignaturas.begin(); it_vec != asignaturas.end(); ++it_vec)
+        {
+            cout << *(it_vec) << endl;
+        }
         break;
     }
     default:
