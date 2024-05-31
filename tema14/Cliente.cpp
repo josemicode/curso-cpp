@@ -13,17 +13,17 @@ void Cliente::agregarCuenta(Cuenta &cuenta)
     this->cuentas.insert(cuenta);
 }
 
-set<Cuenta> Cliente::getCuentas()
+set<Cuenta> Cliente::getCuentas() const
 {
     return cuentas;
 }
 
-string Cliente::getNombre()
+string Cliente::getNombre() const
 {
     return nombre;
 }
 
-string Cliente::getDNI()
+string Cliente::getDNI() const
 {
     return DNI;
 }

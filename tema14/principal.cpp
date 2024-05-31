@@ -22,7 +22,7 @@ int main()
 {
     set<Cliente> clientes;
 
-    leerClientes("clientes.txt", clientes);
+    leerClientes("clientes2023.txt", clientes);
     leerCuentas("cuentas2023.txt", clientes);
 
     imprimirClientes(clientes);
@@ -69,15 +69,19 @@ void leerCuentas(const string &archivoCuentas, set<Cliente> &clientes)
     while (archivo >> DNI >> numero >> saldo >> nro_credito)
     {
         Cuenta cuenta;
-        cuenta.numero = numero;
-        cuenta.saldo = saldo;
-        cuenta.nro_credito = nro_credito;
+        //cuenta.numero = numero;
+		cuenta.setNumero(numero);
+        //cuenta.saldo = saldo;
+		cuenta.setSaldo(saldo);
+        //cuenta.nro_credito = nro_credito;
+		cuenta.setNro_Credito(nro_credito);
 
         for (auto &cliente : clientes)
         {
             if (cliente == DNI)
             {
-                cliente.agregarCuenta(cuenta);
+				Cliente &nonConstCliente = const_cast<Cliente &>(cliente);
+                nonConstCliente.agregarCuenta(cuenta);
                 int indice = encontrarIndice(clientes, DNI);
                 cout << "Al cliente " << setw(3) << setfill('0') << indice << " se ha agregado la cuenta con numero " << numero << endl;
                 break;
@@ -103,8 +107,8 @@ void crearResumenCuentas(const set<Cliente> &clientes)
     {
         for (const auto &cuenta : cliente.getCuentas())
         {
-            resumen << cuenta.numero << ", "
-                    << cuenta.saldo << ", "
+            resumen << cuenta.getNumero() << ", "
+                    << cuenta.getSaldo() << ", "
                     << cliente.getDNI() << ", "
                     << cliente.getNombre() << endl;
         }

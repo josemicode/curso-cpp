@@ -19,9 +19,9 @@ public:
     Cliente(string nombre, string DNI);
 
     void agregarCuenta(Cuenta &cuenta);
-    set<Cuenta> getCuentas();
-    string getNombre();
-    string getDNI();
+    set<Cuenta> getCuentas() const;
+    string getNombre() const;
+    string getDNI() const;
 
     bool operator<(const Cliente &otro) const;
     bool operator==(const string &DNI) const;
