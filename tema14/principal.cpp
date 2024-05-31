@@ -1,3 +1,10 @@
+/*
+José Miguel Ojeda Gutiérrez
+Fecha: 17-05-2024
+Docente: Manuel E. Gentive
+Descripción: [Tarea de laboratorio - Tema Contenedores y Algoritmos]
+Ejercicios realizados: 3/3
+*/
 #include <iostream>
 #include <fstream>
 #include <set>
