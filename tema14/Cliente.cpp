@@ -1,8 +1,7 @@
 #include "Cliente.h"
-Cliente::Cliente()
-{
-    this->cuentas;
-}
+
+Cliente::Cliente() {}
+
 Cliente::Cliente(string nombre, string DNI)
 {
     this->nombre = nombre;
@@ -19,6 +18,16 @@ set<Cuenta> Cliente::getCuentas()
     return cuentas;
 }
 
+string Cliente::getNombre()
+{
+    return nombre;
+}
+
+string Cliente::getDNI()
+{
+    return DNI;
+}
+
 bool Cliente::operator<(const Cliente &otro) const
 {
     return stol(this->DNI.substr(0, 8)) < stol(otro.DNI.substr(0, 8));
@@ -29,7 +38,14 @@ bool Cliente::operator==(const string &DNI) const
     return this->DNI == DNI;
 }
 
-string Cliente::getNombre()
+ostream &operator<<(ostream &os, const Cliente &cliente)
 {
-    return nombre;
+    os << cliente.nombre << " " << cliente.DNI;
+    return os;
+}
+
+istream &operator>>(istream &is, Cliente &cliente)
+{
+    is >> cliente.nombre >> cliente.DNI;
+    return is;
 }
