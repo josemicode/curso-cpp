@@ -1,7 +1,11 @@
 #pragma once
 #include <set>
+#include <string>
+#include <iostream>
 
 #include "Cuenta.h"
+
+using namespace std;
 
 class Cliente
 {
@@ -17,6 +21,7 @@ public:
     void agregarCuenta(Cuenta &cuenta);
     set<Cuenta> getCuentas();
     string getNombre();
+    string getDNI();
 
     bool operator<(const Cliente &otro) const;
     bool operator==(const string &DNI) const;
