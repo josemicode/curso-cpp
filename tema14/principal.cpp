@@ -3,6 +3,7 @@
 #include <set>
 #include <string>
 #include <iomanip>
+#include <sstream> // Para std::stringstream
 
 #include "Cliente.h"
 #include "Cuenta.h"
@@ -22,8 +23,13 @@ int main()
 {
     set<Cliente> clientes;
 
-    leerClientes("clientes2023.txt", clientes);
-    leerCuentas("cuentas2023.txt", clientes);
+    try {
+        leerClientes("clientes2023.txt", clientes);
+        leerCuentas("cuentas2023.txt", clientes);
+    } catch (const exception &e) {
+        cerr << "Error al leer archivos: " << e.what() << endl;
+        return 1;
+    }
 
     imprimirClientes(clientes);
     crearResumenCuentas(clientes);
@@ -50,10 +56,20 @@ int encontrarIndice(const Container &clientes, const string &DNI)
 void leerClientes(const string &archivoClientes, set<Cliente> &clientes)
 {
     ifstream archivo(archivoClientes);
-    string nombre, DNI;
+    if (!archivo.is_open()) {
+        throw runtime_error("No se puede abrir el archivo de clientes");
+    }
 
-    while (archivo >> nombre >> DNI)
+    string linea;
+    while (getline(archivo, linea))
     {
+        stringstream ss(linea);
+        string nombre, DNI;
+        getline(ss, nombre, '"');
+        ss >> ws; // Ignorar espacios en blanco
+        getline(ss, nombre, '"');
+        ss >> DNI;
+
         Cliente cliente(nombre, DNI);
         clientes.insert(cliente);
     }
@@ -62,12 +78,24 @@ void leerClientes(const string &archivoClientes, set<Cliente> &clientes)
 void leerCuentas(const string &archivoCuentas, set<Cliente> &clientes)
 {
     ifstream archivo(archivoCuentas);
-    string DNI, numero;
-    float saldo;
-    int nro_credito;
+    if (!archivo.is_open()) {
+        throw runtime_error("No se puede abrir el archivo de cuentas");
+    }
 
-    while (archivo >> DNI >> numero >> saldo >> nro_credito)
+    string linea;
+    while (getline(archivo, linea))
     {
+        stringstream ss(linea);
+        string DNI, numero;
+        float saldo;
+        int nro_credito;
+
+        ss >> DNI;
+        ss >> ws; // Ignorar espacios en blanco
+        ss.ignore(1, '"'); // Ignorar el primer "
+        getline(ss, numero, '"'); // Leer el número de cuenta hasta el siguiente "
+        ss >> saldo >> nro_credito;
+
         Cuenta cuenta;
         //cuenta.numero = numero;
 		cuenta.setNumero(numero);
@@ -80,8 +108,9 @@ void leerCuentas(const string &archivoCuentas, set<Cliente> &clientes)
         {
             if (cliente == DNI)
             {
-				Cliente &nonConstCliente = const_cast<Cliente &>(cliente);
-                nonConstCliente.agregarCuenta(cuenta);
+
+                Cliente &nonConstCliente = const_cast<Cliente &>(cliente);
+				nonConstCliente.agregarCuenta(cuenta);
                 int indice = encontrarIndice(clientes, DNI);
                 cout << "Al cliente " << setw(3) << setfill('0') << indice << " se ha agregado la cuenta con numero " << numero << endl;
                 break;
@@ -103,6 +132,10 @@ void imprimirClientes(const set<Cliente> &clientes)
 void crearResumenCuentas(const set<Cliente> &clientes)
 {
     ofstream resumen("Resumen de Cuentas.txt");
+    if (!resumen.is_open()) {
+        throw runtime_error("No se puede crear el archivo de resumen");
+    }
+
     for (const auto &cliente : clientes)
     {
         for (const auto &cuenta : cliente.getCuentas())
