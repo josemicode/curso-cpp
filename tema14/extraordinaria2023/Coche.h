@@ -25,6 +25,6 @@ class Coche{
         void setAnho(int anho);
 
         friend ostream& operator<<(ostream& os, Coche& coche);
-         friend istream& operator>>(istream& is, Coche& coche);
+        friend istream& operator>>(istream& is, Coche& coche);
 
 };
