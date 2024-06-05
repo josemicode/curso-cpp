@@ -1,3 +1,5 @@
+#include <fstream>
+#include <iomanip>
 #include <vector>
 
 #include "Coche.h"
@@ -8,17 +10,24 @@ void mostrarMenu();
 
 
 ostream& operator<<(ostream& os, Coche& coche) {
-	return error;
+	if(&os == &cout){
+		os << right << setw(7) << coche.getMarca() << " - " << coche.getModelo() << left << setw(5) << coche.getAnho() << coche.getMatricula();
+	}else{
+		os; // TODO: Implement outstream for files (should be accessed by Conductor's os on a condition)
+	}
+	return os;
 }
 istream& operator>>(istream& is, Coche& coche) {
-	return error;
+	is >> coche.matricula >> coche.marca >> coche.modelo >> coche.anho;
+	return is;
 }
 ostream& operator<<(ostream& os, Conductor& conductor) {
 	// se recomienda verificar si el conductor tiene un coche asociado verificando si es diferente que nullptr
 	return error;
 }
 istream& operator>>(istream& is, Conductor& conductor) {
-	return error;
+	is >> conductor.DNI >> conductor.nombre_completo >> conductor.num_viajes >> conductor.puntuacion;
+	return is;
 }
 
 int main() {
@@ -32,7 +41,7 @@ int main() {
 	*    nombre_vector.push_back(clase);
 	* Acceder a un elemento de un array
 	*    nombre_vector.at(indice)
-	* Obtener el tamaño de un vector
+	* Obtener el tamaï¿½o de un vector
 	*    nombre_vector.size()
 	*/
 	int opcion = 0;
