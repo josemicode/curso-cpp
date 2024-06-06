@@ -5,15 +5,20 @@
 #include "Coche.h"
 #include "Conductor.h"
 
+using namespace std;
 
 void mostrarMenu();
 
+ifstream f_coches = ifstream("coches.txt", ios::in);
+ifstream f_conductores = ifstream("conductores.txt", ios::in);
+ofstream f_resumen = ofstream("Resumen_Conductores.txt", ios::out);
+ofstream f_coches_asig = ofstream("conductores_coches.txt", ios::out);
 
 ostream& operator<<(ostream& os, Coche& coche) {
 	if(&os == &cout){
 		os << right << setw(7) << coche.getMarca() << " - " << coche.getModelo() << left << setw(5) << coche.getAnho() << coche.getMatricula();
 	}else{
-		os; // TODO: Implement outstream for files (should be accessed by Conductor's os on a condition)
+		os << coche.getMatricula() << "," << coche.getMarca() << "," << coche.getModelo(); // TODO: Implement outstream for files (should be accessed by Conductor's os on a condition)
 	}
 	return os;
 }
@@ -23,7 +28,18 @@ istream& operator>>(istream& is, Coche& coche) {
 }
 ostream& operator<<(ostream& os, Conductor& conductor) {
 	// se recomienda verificar si el conductor tiene un coche asociado verificando si es diferente que nullptr
-	return error;
+		if(&os == &cout){
+		os << right << setw(15) << conductor.getDNI() << left << setw(5) << conductor.getNumViajes() << right << setw(10) << conductor.getPuntuacion();
+	}else{
+		if(&os == &f_resumen){
+
+		}else if (&os == &f_coches_asig)
+		{
+
+		}
+		
+	}
+	return os;
 }
 istream& operator>>(istream& is, Conductor& conductor) {
 	is >> conductor.DNI >> conductor.nombre_completo >> conductor.num_viajes >> conductor.puntuacion;
@@ -59,11 +75,27 @@ int main() {
 		case 1: {
 			// Cargar conductores desde un archivo
 			cout << "Cargando todos los conductores de conductores.txt" << endl;
+			if (f_conductores)
+			{
+				Conductor aux_conductor;
+				while (f_conductores >> aux_conductor){
+					conductores.push_back(aux_conductor);
+				}
+			}
+			
 			cout << endl << "-------------------------------------------------" << endl;
 			break; }
 		case 2: {
 			// Cargar coches desde un archivo
 			cout << "Cargando todos los coches de coches.txt" << endl;
+			if (f_coches)
+			{
+				Coche aux_coche;
+				while (f_conductores >> aux_coche){
+					coches.push_back(aux_coche);
+				}
+			}
+			
 			cout << endl << "-------------------------------------------------" << endl;
 			break; }
 		case 3: {
