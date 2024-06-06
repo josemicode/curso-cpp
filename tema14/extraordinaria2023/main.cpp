@@ -103,6 +103,11 @@ int main() {
 		case 3: {
 			// Asignar coches a los conductores
 			cout << "Se asignaran " << coches.size() << " coches entre " << conductores.size() << " diferentes conductores." << endl;
+			
+			for(int i = 0; i < coches.size(); i++){
+				conductores.at(i).setCoche(&coches.at(i));
+			}
+
 			cout << endl << "-------------------------------------------------" << endl;
 			break; }
 		case 4: {
