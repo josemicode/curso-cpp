@@ -22,7 +22,7 @@ ostream &operator<<(ostream &os, Coche &coche)
 	}
 	else
 	{
-		os << coche.getMatricula() << "," << coche.getMarca() << "," << coche.getModelo(); // TODO: Implement outstream for files (should be accessed by Conductor's os on a condition)
+		os << coche.getMatricula() << "," << coche.getMarca() << "," << coche.getModelo();
 	}
 	return os;
 }
@@ -36,15 +36,23 @@ ostream &operator<<(ostream &os, Conductor &conductor)
 	// se recomienda verificar si el conductor tiene un coche asociado verificando si es diferente que nullptr
 	if (&os == &cout)
 	{
-		os << right << setw(15) << conductor.getDNI() << " " << left << setw(5) << conductor.getNumViajes() << " " << right << setw(10) << conductor.getPuntuacion();
+		os << right << setw(15) << conductor.getDNI() << " " << left << setw(5) << conductor.getNumViajes() << " " << right << setw(10) << setprecision(3) << conductor.getPuntuacion();
 	}
 	else
 	{
 		if (&os == &f_resumen)
 		{
+			if(conductor.getCoche() != nullptr){
+				os << left << setw(25) << quoted(conductor.getNombreCompleto()) << " " << right << setw(16) << "Si" << " " << setw(12) << conductor.getPuntuacion() << " " << setw(17) << conductor.getNumViajes();
+			}else{
+				os << left << setw(25) << quoted(conductor.getNombreCompleto()) << " " << right << setw(16) << "No" << " " << setw(12) << "-" << " " << setw(17) << "-";
+			}
 		}
 		else if (&os == &f_coches_asig)
 		{
+			if(conductor.getCoche() != nullptr){
+				//TODO: Implement file writer for f_coches_asig ["conductores_coches.txt"]
+			}
 		}
 	}
 	return os;
@@ -166,6 +174,13 @@ int main()
 		{
 			// Crear un archivo con los datos de todos los conductores
 			cout << "A continuacion se creara un archivo con todos los conductores, mostrando si/no tiene un coche." << endl;
+			
+			if(f_resumen){
+				for(int i = 0; i < conductores.size(); i++){
+					f_resumen << conductores.at(i);
+				}
+			}
+
 			cout << endl
 				<< "-------------------------------------------------" << endl;
 			break;
@@ -174,6 +189,9 @@ int main()
 		{
 			// Crear un archivo con los datos de todos los conductores y sus coches asignados
 			cout << "A continuacion se creara un archivo con todos los conductores, informando de su coche asignado si lo hubiere." << endl;
+
+			//? Identical structure to case 6, accessing f_coches_asig instead
+
 			cout << endl
 				<< "-------------------------------------------------" << endl;
 			break;
