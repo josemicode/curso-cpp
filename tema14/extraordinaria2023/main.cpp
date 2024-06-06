@@ -42,17 +42,23 @@ ostream &operator<<(ostream &os, Conductor &conductor)
 	{
 		if (&os == &f_resumen)
 		{
-			if(conductor.getCoche() != nullptr){
+			if (conductor.getCoche() != nullptr)
+			{
 				os << left << setw(25) << quoted(conductor.getNombreCompleto()) << " " << right << setw(16) << "Si" << " " << setw(12) << conductor.getPuntuacion() << " " << setw(17) << conductor.getNumViajes();
-			}else{
+			}
+			else
+			{
 				os << left << setw(25) << quoted(conductor.getNombreCompleto()) << " " << right << setw(16) << "No" << " " << setw(12) << "-" << " " << setw(17) << "-";
 			}
 		}
 		else if (&os == &f_coches_asig)
 		{
-			if(conductor.getCoche() != nullptr){
+			if (conductor.getCoche() != nullptr)
+			{
 				os << conductor.getDNI() << "," << conductor.getPuntuacion() << "," << conductor.getNumViajes() << "," << *conductor.getCoche();
-			}else{
+			}
+			else
+			{
 				os << conductor.getDNI() << "," << conductor.getPuntuacion() << "," << conductor.getNumViajes() << ",-,-,-";
 			}
 		}
@@ -176,11 +182,13 @@ int main()
 		{
 			// Crear un archivo con los datos de todos los conductores
 			cout << "A continuacion se creara un archivo con todos los conductores, mostrando si/no tiene un coche." << endl;
-			
-			if(f_resumen){
+
+			if (f_resumen)
+			{
 				f_resumen << left << setw(25) << "Nombre" << " " << right << setw(16) << "Tiene Coche" << " " << setw(12) << "Puntuacion" << " " << setw(17) << "Num. de Viajes" << endl;
 
-				for(int i = 0; i < conductores.size(); i++){
+				for (int i = 0; i < conductores.size(); i++)
+				{
 					f_resumen << conductores.at(i) << endl;
 				}
 			}
@@ -195,8 +203,10 @@ int main()
 			cout << "A continuacion se creara un archivo con todos los conductores, informando de su coche asignado si lo hubiere." << endl;
 
 			//? Structure identical to case 6, accessing f_coches_asig instead
-			if(f_resumen){
-				for(int i = 0; i < conductores.size(); i++){
+			if (f_resumen)
+			{
+				for (int i = 0; i < conductores.size(); i++)
+				{
 					f_coches_asig << conductores.at(i) << endl;
 				}
 			}
