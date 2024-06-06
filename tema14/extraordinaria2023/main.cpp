@@ -51,7 +51,9 @@ ostream &operator<<(ostream &os, Conductor &conductor)
 		else if (&os == &f_coches_asig)
 		{
 			if(conductor.getCoche() != nullptr){
-				//TODO: Implement file writer for f_coches_asig ["conductores_coches.txt"]
+				os << conductor.getDNI() << "," << conductor.getPuntuacion() << "," << conductor.getNumViajes() << "," << *conductor.getCoche();
+			}else{
+				os << conductor.getDNI() << "," << conductor.getPuntuacion() << "," << conductor.getNumViajes() << ",-,-,-";
 			}
 		}
 	}
@@ -176,8 +178,10 @@ int main()
 			cout << "A continuacion se creara un archivo con todos los conductores, mostrando si/no tiene un coche." << endl;
 			
 			if(f_resumen){
+				f_resumen << left << setw(25) << "Nombre" << " " << right << setw(16) << "Tiene Coche" << " " << setw(12) << "Puntuacion" << " " << setw(17) << "Num. de Viajes" << endl;
+
 				for(int i = 0; i < conductores.size(); i++){
-					f_resumen << conductores.at(i);
+					f_resumen << conductores.at(i) << endl;
 				}
 			}
 
@@ -190,8 +194,12 @@ int main()
 			// Crear un archivo con los datos de todos los conductores y sus coches asignados
 			cout << "A continuacion se creara un archivo con todos los conductores, informando de su coche asignado si lo hubiere." << endl;
 
-			//? Identical structure to case 6, accessing f_coches_asig instead
-
+			//? Structure identical to case 6, accessing f_coches_asig instead
+			if(f_resumen){
+				for(int i = 0; i < conductores.size(); i++){
+					f_coches_asig << conductores.at(i) << endl;
+				}
+			}
 			cout << endl
 				<< "-------------------------------------------------" << endl;
 			break;
