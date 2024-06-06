@@ -16,7 +16,7 @@ ofstream f_coches_asig = ofstream("conductores_coches.txt", ios::out);
 
 ostream& operator<<(ostream& os, Coche& coche) {
 	if(&os == &cout){
-		os << right << setw(7) << coche.getMarca() << " - " << coche.getModelo() << left << setw(5) << coche.getAnho() << coche.getMatricula();
+		os << right << setw(7) << coche.getMarca() << " - " << coche.getModelo() << " " << left << setw(5) << coche.getAnho() << " " << coche.getMatricula();
 	}else{
 		os << coche.getMatricula() << "," << coche.getMarca() << "," << coche.getModelo(); // TODO: Implement outstream for files (should be accessed by Conductor's os on a condition)
 	}
@@ -29,7 +29,7 @@ istream& operator>>(istream& is, Coche& coche) {
 ostream& operator<<(ostream& os, Conductor& conductor) {
 	// se recomienda verificar si el conductor tiene un coche asociado verificando si es diferente que nullptr
 		if(&os == &cout){
-		os << right << setw(15) << conductor.getDNI() << left << setw(5) << conductor.getNumViajes() << right << setw(10) << conductor.getPuntuacion();
+		os << right << setw(15) << conductor.getDNI() << " " << left << setw(5) << conductor.getNumViajes() << " " << right << setw(10) << conductor.getPuntuacion();
 	}else{
 		if(&os == &f_resumen){
 
@@ -42,7 +42,7 @@ ostream& operator<<(ostream& os, Conductor& conductor) {
 	return os;
 }
 istream& operator>>(istream& is, Conductor& conductor) {
-	is >> conductor.DNI >> conductor.nombre_completo >> conductor.num_viajes >> conductor.puntuacion;
+	is >> conductor.DNI >> quoted(conductor.nombre_completo) >> conductor.num_viajes >> conductor.puntuacion;
 	return is;
 }
 
@@ -91,7 +91,9 @@ int main() {
 			if (f_coches)
 			{
 				Coche aux_coche;
-				while (f_conductores >> aux_coche){
+				string cabecera;
+				f_coches >> cabecera >> cabecera >> cabecera >> cabecera;
+				while (f_coches >> aux_coche){
 					coches.push_back(aux_coche);
 				}
 			}
@@ -106,11 +108,21 @@ int main() {
 		case 4: {
 			// Mostrar los datos de todos los coches
 			cout << "Existen " << coches.size() << " coches, mostrados a continuacion: " << endl;
+
+			for(int i = 0; i < coches.size(); i++){
+				cout << coches.at(i) << endl;
+			}
+
 			cout << endl << "-------------------------------------------------" << endl;
 			break; }
 		case 5: {
 			// Mostrar los datos de todos los conductores
 			cout << "Existen " << conductores.size() << " conductores, mostrados a continuacion: " << endl;
+
+			for(int i = 0; i < conductores.size(); i++){
+				cout << conductores.at(i) << endl;
+			}
+			
 			cout << endl << "-------------------------------------------------" << endl;
 			break; }
 		case 6: {
