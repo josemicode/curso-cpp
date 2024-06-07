@@ -1,10 +1,11 @@
 #pragma once
-#include<iostream>
-#include"Tarjeta.h"
+#include <iostream>
+#include "Tarjeta.h"
 
 using namespace std;
 
-class Persona{
+class Persona
+{
 private:
     string nombre;
     string DNI;
@@ -24,6 +25,6 @@ public:
 
     bool operator==(const string &dni) const;
 
-    friend ostream & operator << (ostream &os, Persona &p);
-    friend istream & operator >> (istream &is, Persona &p);
+    friend ostream &operator<<(ostream &os, Persona &p);
+    friend istream &operator>>(istream &is, Persona &p);
 };

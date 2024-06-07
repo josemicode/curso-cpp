@@ -3,10 +3,12 @@
 
 using namespace std;
 
-class Tarjeta{
-private: 
+class Tarjeta
+{
+private:
     int ID;
     int nivel_acceso;
+
 public:
     Tarjeta();
     Tarjeta(int ID, int nivel_acceso);
@@ -18,7 +20,6 @@ public:
     void setID(int ID);
     void setNivelAcceso(int nivel_acceso);
 
-    friend ostream & operator << (ostream &os, Tarjeta &t);
-    friend istream & operator >> (istream &is, Tarjeta &t);
-
+    friend ostream &operator<<(ostream &os, Tarjeta &t);
+    friend istream &operator>>(istream &is, Tarjeta &t);
 };
